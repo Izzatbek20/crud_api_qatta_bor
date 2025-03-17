@@ -2,7 +2,7 @@
 import requests
 import traceback
 
-from core.config import config
+from app.core.config import config
 
 
 def send_slack_message(exc, exc_type, exc_message):

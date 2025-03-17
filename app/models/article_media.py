@@ -2,7 +2,7 @@ from sqlalchemy import Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 from database.database import Base
 from datetime import datetime
-from schemas.article_media import ArticleType
+from app.schemas.article_media import ArticleType
 
 
 class ArticleMedia(Base):

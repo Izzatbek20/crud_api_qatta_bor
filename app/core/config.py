@@ -24,6 +24,7 @@ class DatabaseSettings(BaseSettings):
     db_connection: str = env.str("DB_CONNECTION")
     db_host: str = env.str("DB_HOST")
     db_port: int = env.int("DB_PORT")
+    db_charset: str = env.str("DB_CHARSET")
     db_database: str = env.str("DB_DATABASE")
     db_username: str = env.str("DB_USERNAME")
     db_password: Optional[str] = Field(default=env.str("DB_PASSWORD", None))

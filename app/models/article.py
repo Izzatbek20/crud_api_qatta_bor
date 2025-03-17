@@ -2,7 +2,7 @@ from sqlalchemy import Integer, String, DateTime, ForeignKey, Boolean, Text, Flo
 from sqlalchemy.orm import Mapped, mapped_column
 from database.database import Base
 from datetime import datetime
-from schemas.article import ArticleStatus
+from app.schemas.article import ArticleStatus
 
 class Article(Base):
     __tablename__ = "articles"

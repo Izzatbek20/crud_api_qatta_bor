@@ -1,8 +1,8 @@
-from sqlalchemy import String, Integer, ForeignKey, DateTime
+from sqlalchemy import String, Integer, DateTime
 from database.database import Base
 from sqlalchemy.orm import Mapped, mapped_column
 from datetime import datetime
-from schemas.category import CategoryStatus
+from app.schemas.category import CategoryStatus
 
 class Category(Base):
     __tablename__ = "categories"

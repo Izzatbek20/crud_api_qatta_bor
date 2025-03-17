@@ -2,7 +2,7 @@ from sqlalchemy import Integer, JSON, ForeignKey, String, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
 from database.database import Base
 from datetime import datetime
-from schemas.article_banner import BannerType
+from app.schemas.article_banner import BannerType
 
 class ArticleBanner(Base):
     __tablename__ = "article_banner"
