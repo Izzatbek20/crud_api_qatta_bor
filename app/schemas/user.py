@@ -2,14 +2,16 @@ from pydantic import BaseModel
 from datetime import datetime
 from enum import Enum
 
-class UserResponse(BaseModel):
-    #id: int
+class UserPayload(BaseModel):
     name: str
     username: str
     password: str
     role: "UserRole"
     photo: str
     status: "UserStatus"
+
+class UserResponse(UserPayload):
+    id: int
     created_at: datetime
     updated_at: datetime
 

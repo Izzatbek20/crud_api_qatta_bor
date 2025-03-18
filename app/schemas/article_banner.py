@@ -2,11 +2,13 @@ from pydantic import BaseModel
 from datetime import datetime
 from enum import Enum
 
-class ArticleBannerResponse(BaseModel):
-    #id: int
+class ArticleBannerPayload(BaseModel):
     article_id: int
     urls: str
     type: "BannerType"
+
+class ArticleBannerResponse(BaseModel):
+    id: int
     created_at: datetime
     updated_at: datetime
 
