@@ -9,7 +9,7 @@ from app.utils.pagination import Page, PageParams, get_page_params
 
 router = APIRouter()
 
-@router.get("/articles",summary="Barcha artikllarni olish")
+@router.get("/views",summary="Barcha artikl viewlarini olish")
 async def router_articleview_get_all(
     current_user: Users = Depends(get_current_user),
     page_params: PageParams = Depends(get_page_params),
@@ -17,7 +17,7 @@ async def router_articleview_get_all(
 ) -> Page[ArticleViewResponse]:
     return await _service.get_all(page_params)
 
-@router.get("/articles/{id}",summary="Artik haqida to'liq ma'lumot olish")
+@router.get("/views/{id}",summary="Artikl view haqida to'liq ma'lumot olish")
 async def router_articleview_get_one(
     id: int,
     current_user: Users = Depends(get_current_user),
@@ -25,7 +25,7 @@ async def router_articleview_get_one(
 ) -> Page[ArticleViewResponse]:
     return await _service.get_one(id)
 
-# @router.post("/articles/create",summary="Yangi artikl yaratish")
+# @router.post("/views/create",summary="Yangi artikl view yaratish")
 # async def router_articleview_create(
 #     payload: ArticlePayload,
 #     current_user: Users = Depends(get_current_user),
@@ -33,7 +33,7 @@ async def router_articleview_get_one(
 # ) -> Page[ArticleViewResponse]:
 #     return await _service.create(payload)
 
-# @router.get("/articles/{id}/update",summary="Artikl ma'lumotlarini yangilash")
+# @router.get("/views/{id}/update",summary="Artikl view ma'lumotlarini yangilash")
 # async def router_articleview_update(
 #     id: int,
 #     payload: ArticlePayload,
@@ -42,7 +42,7 @@ async def router_articleview_get_one(
 # ) -> Page[ArticleViewResponse]:
 #     return await _service.get_all(id, payload)
 
-@router.delete("/articles/{id}/delete",summary="Artiklni o'chirish")
+@router.delete("/views/{id}/delete",summary="Artikl viewni o'chirish")
 async def router_articleview_delete(
     id: int,
     current_service: Users = Depends(get_current_user),
