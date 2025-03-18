@@ -15,4 +15,4 @@ class ArticleBanner(Base):
     updated_at: Mapped[DateTime] = mapped_column(DateTime)
 
     #Relatioships
-    article = relationship("Article", back_populates="article_banner")
+    article = relationship("Article", primaryjoin="ArticleBanner.article_id==Article.id", back_populates="article_banner")

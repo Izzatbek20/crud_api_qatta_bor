@@ -4,7 +4,7 @@ from app.auth.services import get_current_user
 from app.models.users import Users
 from app.schemas.article_view import ArticleViewResponse
 from app.services.article_view import ArticleViewService
-from app.deps import article_service_dp
+from app.deps import view_service_dp
 from app.utils.pagination import Page, PageParams, get_page_params
 
 router = APIRouter()
@@ -13,7 +13,7 @@ router = APIRouter()
 async def router_articleview_get_all(
     current_user: Users = Depends(get_current_user),
     page_params: PageParams = Depends(get_page_params),
-    _service: ArticleViewService = Depends(article_service_dp)
+    _service: ArticleViewService = Depends(view_service_dp)
 ) -> Page[ArticleViewResponse]:
     return await _service.get_all(page_params)
 
@@ -21,7 +21,7 @@ async def router_articleview_get_all(
 async def router_articleview_get_one(
     id: int,
     current_user: Users = Depends(get_current_user),
-    _service: ArticleViewService = Depends(article_service_dp)
+    _service: ArticleViewService = Depends(view_service_dp)
 ) -> Page[ArticleViewResponse]:
     return await _service.get_one(id)
 
@@ -29,7 +29,7 @@ async def router_articleview_get_one(
 # async def router_articleview_create(
 #     payload: ArticlePayload,
 #     current_user: Users = Depends(get_current_user),
-#     _service: ArticleViewService = Depends(article_service_dp)
+#     _service: ArticleViewService = Depends(view_service_dp)
 # ) -> Page[ArticleViewResponse]:
 #     return await _service.create(payload)
 
@@ -38,7 +38,7 @@ async def router_articleview_get_one(
 #     id: int,
 #     payload: ArticlePayload,
 #     current_user: Users = Depends(get_current_user),
-#     _service: ArticleViewService = Depends(article_service_dp)
+#     _service: ArticleViewService = Depends(view_service_dp)
 # ) -> Page[ArticleViewResponse]:
 #     return await _service.get_all(id, payload)
 
@@ -46,6 +46,6 @@ async def router_articleview_get_one(
 async def router_articleview_delete(
     id: int,
     current_service: Users = Depends(get_current_user),
-    _service: ArticleViewService = Depends(article_service_dp)
+    _service: ArticleViewService = Depends(view_service_dp)
 ):
     return await _service.delete(id)

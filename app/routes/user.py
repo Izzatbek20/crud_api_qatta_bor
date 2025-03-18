@@ -28,7 +28,7 @@ async def router_user_get_one(
 @router.post("/users/create",summary="Yangi foydalanuvchi yaratish")
 async def router_user_create(
     payload: UserPayload,
-    #current_user: Users = Depends(get_current_user),
+    current_user: Users = Depends(get_current_user),
     _service: UserService = Depends(user_service_dp)
 ):
     return await _service.create(payload)

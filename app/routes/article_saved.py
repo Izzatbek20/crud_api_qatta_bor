@@ -4,7 +4,7 @@ from app.auth.services import get_current_user
 from app.models.users import Users
 from app.services.article_saved import ArticleSavedService
 from app.schemas.article_saved import ArticleSavedResponse
-from app.deps import banner_service_dp
+from app.deps import saved_service_dp
 from app.utils.pagination import Page, PageParams, get_page_params
 
 router = APIRouter()
@@ -13,7 +13,7 @@ router = APIRouter()
 async def router_saved_get_all(
     current_user: Users = Depends(get_current_user),
     page_params: PageParams = Depends(get_page_params),
-    _service: ArticleSavedService = Depends(banner_service_dp)
+    _service: ArticleSavedService = Depends(saved_service_dp)
 ) -> Page[ArticleSavedResponse]:
     return await _service.get_all(page_params)
 
@@ -21,7 +21,7 @@ async def router_saved_get_all(
 async def router_saved_get_one(
     id: int,
     current_user: Users = Depends(get_current_user),
-    _service: ArticleSavedService = Depends(banner_service_dp)
+    _service: ArticleSavedService = Depends(saved_service_dp)
 ) -> ArticleSavedResponse:
     return await _service.get_one(id)
 
@@ -29,7 +29,7 @@ async def router_saved_get_one(
 # async def router_saved_create(
 #     payload: ArticleSavedPayload,
 #     current_user: Users = Depends(get_current_user),
-#     _service: ArticleSavedService = Depends(banner_service_dp)
+#     _service: ArticleSavedService = Depends(saved_service_dp)
 # ):
 #     return await _service.create(payload)
 
@@ -38,7 +38,7 @@ async def router_saved_get_one(
 #     id: int,
 #     payload: ArticleSavedPayload,
 #     current_user: Users = Depends(get_current_user),
-#     _service: ArticleSavedService = Depends(banner_service_dp)
+#     _service: ArticleSavedService = Depends(saved_service_dp)
 # ):
 #     return await _service.update(id, payload)
 
@@ -46,6 +46,6 @@ async def router_saved_get_one(
 async def router_saved_delete(
     id: int,
     current_user: Users = Depends(get_current_user),
-    _service: ArticleSavedService = Depends(banner_service_dp)
+    _service: ArticleSavedService = Depends(saved_service_dp)
 ):
     return await _service.delete(id)
