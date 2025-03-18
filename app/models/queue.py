@@ -2,7 +2,7 @@ from sqlalchemy import Integer, DateTime, ForeignKey, Boolean, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from database.database import Base
 from datetime import datetime
-from app.models.article import Article
+#from app.models.article import Article
 
 class Queue(Base):
     __tablename__ = "queue"
