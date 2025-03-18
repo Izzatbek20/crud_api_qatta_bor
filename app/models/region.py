@@ -17,3 +17,4 @@ class Region(Base):
 
     #Relationships
     article = relationship("Article", back_populates="region")
+    queue = relationship("Queue", back_populates="region")

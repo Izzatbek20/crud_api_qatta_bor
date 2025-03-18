@@ -14,9 +14,9 @@ class Queue(Base):
     region_id: Mapped[int] = mapped_column(Integer, ForeignKey("region.id"))
     body: Mapped[str] = mapped_column(Text)
     created_at: Mapped[DateTime] = mapped_column(DateTime, default=datetime.now())
-    updated_at: Mapped[DateTime] = mapped_column(DateTime)
+    updated_at: Mapped[DateTime] = mapped_column(DateTime, default=datetime.now())
 
     #Relationships
     article = relationship("Article", back_populates="queue", lazy='joined')
     region = relationship("Region", back_populates="queue")
-    send_chat = relationship("", back_populates="queue")
+    #send_chat = relationship("", back_populates="queue")
