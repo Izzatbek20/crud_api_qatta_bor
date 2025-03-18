@@ -6,7 +6,7 @@ from datetime import datetime
 class TgUsers(Base):
     __tablename__ = "tg_users"
 
-    user_id: Mapped[int] = mapped_column(Integer, ForeignKey("user.id"), nullable=False)
+    user_id: Mapped[int] = mapped_column(Integer, primary_key=True, ForeignKey("user.id"), nullable=False)
     chat_id: Mapped[int] = mapped_column(Integer, ForeignKey("tg_chat.id"), nullable=False)
     region_id: Mapped[int] = mapped_column(Integer, ForeignKey("articles.id"), nullable=False)
     fullname: Mapped[str] = mapped_column(String(255))
