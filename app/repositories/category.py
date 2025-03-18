@@ -1,16 +1,16 @@
-from sqlalchemy import insert, update, delete
 from sqlalchemy.future import select
+from sqlalchemy import insert, delete, update
 
 from app.core.base import BaseRepository
-from app.models.article_banner import ArticleBanner
+from app.models.category import Category
 from app.utils.pagination import PageParams, pagination
 
-class ArticleBannerRepository(BaseRepository):
+class CategoryRepository(BaseRepository):
     async def get_all(self, page_params: PageParams = None):
         """
             Barcha ma'lumotlarni olish
         """
-        query = select(ArticleBanner)
+        query = select(Category)
 
         if page_params:
             return await pagination(self.session, query, page_params)
@@ -20,44 +20,45 @@ class ArticleBannerRepository(BaseRepository):
 
     async def get_one(self, id: int):
         """
-            Article bannerning to'liq ma'lumotlarini olish
+            Categoryning to'liq ma'lumotlarini olish
         """
-        query = select(ArticleBanner).where(ArticleBanner.id==id)
+        query = select(Category).where(Category.id==id)
         result = await self.session.execute(query)
         return result.scalar_one_or_none()
 
-    async def create(self, payload: dict, flush: bool = False, commit: bool = True) -> int | bool:
+    async def create(self, payload: dict, flush: bool = False, commit: bool = True) -> int|bool:
         """
-            Yangi article banner yaratish
+            Yangi category yaratish
         """
-        query = insert(ArticleBanner).values(payload)
+        query = insert(Category).values(payload)
         exc = await self.session.execute(query)
 
         if flush:
             await self.session.flush()
-            return exc.inserted_primary_key[0]  # Flush qilinganda qo'shilgan ma'lumot id sini qaytaradi
+            return exc.inserted_primary_key[0]
         elif commit:
             await self.session.commit()
             return True
 
     async def update(self, id: int, payload: dict, flush: bool = False, commit: bool = True) -> int | bool:
         """
-            Article banner ma'lumotini yangilash
+            Category ma'lumotlarini yangilash
         """
-        query = update(ArticleBanner).values(payload)
+        query = update(Category).where(Category.id==id).values(payload)
         exc = await self.session.execute(query)
 
         if flush:
             await self.session.flush()
-            return exc.inserted_primary_key[0]  # Flush qilinganda qo'shilgan ma'lumot id sini qaytaradi
+            return exc.inserted_primary_key[0]
         elif commit:
             await self.session.commit()
             return True
 
     async def delete(self, id: int):
         """
-            Article banner ma'lumotlarini o'chirish
+            Ma'lumotlarni o'chirish
         """
-        query = delete(ArticleBanner).where(ArticleBanner.id==id)
+        query = delete(Category).where(Category.id==id)
         await self.session.execute(query)
         await self.session.commit()
+        return True

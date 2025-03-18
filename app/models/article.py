@@ -2,6 +2,7 @@ from sqlalchemy import Integer, String, DateTime, ForeignKey, Boolean, Text, Flo
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from database.database import Base
 from datetime import datetime
+from app.models.region import Region
 from app.schemas.article import ArticleStatus
 
 class Article(Base):
@@ -29,7 +30,7 @@ class Article(Base):
     user = relationship("Users", back_populates="article")
     category = relationship("Category", back_populates="article")
     region = relationship("Region", back_populates="article")
-    queue = relationship("Queue", back_populates="article")
+    queue = relationship("Queue", back_populates="article", lazy='joined')
     article_banner = relationship("ArticleBanner", back_populates="article")
     article_media = relationship("ArticleMedia", back_populates="article")
     article_saved = relationship("ArticleSaved", back_populates="article")

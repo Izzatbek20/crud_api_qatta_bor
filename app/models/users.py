@@ -1,5 +1,5 @@
 from sqlalchemy import Integer, String, DateTime
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from database.database import Base
 from datetime import datetime
 from app.schemas.user import UserStatus, UserRole
@@ -16,3 +16,7 @@ class Users(Base):
     status: Mapped[str] = mapped_column(String(75), default=UserStatus.AKTIV)
     created_at: Mapped[DateTime] = mapped_column(DateTime, default=datetime.now())
     updated_at: Mapped[DateTime] = mapped_column(DateTime)
+
+    # Relationships
+
+    article = relationship("Article", back_populates="user")

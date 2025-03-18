@@ -7,7 +7,7 @@ class Queue(Base):
     __tablename__ = "queue"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    article_id: Mapped[int] = mapped_column(Integer, ForeignKey("article.id"), nullable=False)
+    article_id: Mapped[int] = mapped_column(Integer, ForeignKey("articles.id"), nullable=False)
     is_channel: Mapped[bool] = mapped_column(Boolean, default=False)
     is_user: Mapped[bool] = mapped_column(Boolean, default=False)
     send_chat_id: Mapped[int] = mapped_column(Integer)
@@ -17,6 +17,6 @@ class Queue(Base):
     updated_at: Mapped[DateTime] = mapped_column(DateTime)
 
     #Relationships
-    article = relationship("Article", back_populates="queue")
+    article = relationship("Article", back_populates="queue", lazy='joined')
     region = relationship("Region", back_populates="queue")
     send_chat = relationship("", back_populates="queue")
