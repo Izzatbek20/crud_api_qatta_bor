@@ -12,9 +12,7 @@ class Users(Base):
     username: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
     password_hash: Mapped[str] = mapped_column(String(255))
     role: Mapped[str] = mapped_column(String(75), default=UserRole.ADMIN)
-    #role user_role [note: "type tiniytext", default: "admin"]
     photo: Mapped[str] = mapped_column(String(255), nullable=True)
     status: Mapped[str] = mapped_column(String(75), default=UserStatus.AKTIV)
-    #status status [note: "type tiniytext", default: "actived"]
     created_at: Mapped[DateTime] = mapped_column(DateTime, default=datetime.now())
     updated_at: Mapped[DateTime] = mapped_column(DateTime)
