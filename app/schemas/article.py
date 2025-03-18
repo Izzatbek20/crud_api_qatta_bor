@@ -3,7 +3,7 @@ from enum import Enum
 from datetime import datetime
 
 class ArticleResponse(BaseModel):
-    # id: int
+    id: int
     author_id: int
     categorie_id: int
     region_id: int

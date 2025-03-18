@@ -44,7 +44,7 @@ class UserRepository(BaseRepository):
         """
             Userni ma'lumotlarini yangilash
         """
-        query = update(Users).values(payload)
+        query = update(Users).where(Users.id==id).values(payload)
         exc = await self.session.execute(query)
 
         if flush:

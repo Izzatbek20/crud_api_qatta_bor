@@ -44,7 +44,7 @@ class ArticleBannerRepository(BaseRepository):
         """
             Article banner ma'lumotini yangilash
         """
-        query = update(ArticleBanner).values(payload)
+        query = update(ArticleBanner).where(ArticleBanner.id==id).values(payload)
         exc = await self.session.execute(query)
 
         if flush:
