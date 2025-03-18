@@ -25,6 +25,16 @@ if config.config_file_name is not None:
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 
+#from models.article import Article
+# from models.article_banner import ArticleBanner
+# from models.article_media import ArticleMedia
+# from models.article_saved import ArticleSaved
+# from models.article_view import ArticleView
+from app.models.category import Category
+# from models.queue import Queue
+# from models.region import Region
+# from models.settings import Settings
+from app.models.tg_user import TgUsers
 from app.models.users import Users
 
 target_metadata = Base.metadata
