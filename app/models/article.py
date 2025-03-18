@@ -20,9 +20,8 @@ class Article(Base):
     longitude: Mapped[float] = mapped_column(Float)
     views: Mapped[int] = mapped_column(Integer, default=0)
     status: Mapped[str] = mapped_column(String(75), default=ArticleStatus.WAIT)
-    #status article_status [note: "type tiniytext", default: "waiting"]
-    start_date: Mapped[DateTime] = mapped_column(DateTime) #datetime [note: "Maqolani ko'rinish vaqti"]
-    end_date: Mapped[DateTime] = mapped_column(DateTime) #datetime [note: "Maqolani ko'rinish vaqti"]
+    start_date: Mapped[DateTime] = mapped_column(DateTime)
+    end_date: Mapped[DateTime] = mapped_column(DateTime)
     created_at: Mapped[DateTime] = mapped_column(DateTime, default=datetime.now())
     updated_at: Mapped[DateTime] = mapped_column(DateTime)
 

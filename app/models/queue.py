@@ -2,6 +2,7 @@ from sqlalchemy import Integer, DateTime, ForeignKey, Boolean, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from database.database import Base
 from datetime import datetime
+from app.models.article import Article
 
 class Queue(Base):
     __tablename__ = "queue"
@@ -16,7 +17,6 @@ class Queue(Base):
     created_at: Mapped[DateTime] = mapped_column(DateTime, default=datetime.now())
     updated_at: Mapped[DateTime] = mapped_column(DateTime)
 
-    #Relationships
+    # Relationships
     article = relationship("Article", back_populates="queue", lazy='joined')
     region = relationship("Region", back_populates="queue")
-    send_chat = relationship("", back_populates="queue")
