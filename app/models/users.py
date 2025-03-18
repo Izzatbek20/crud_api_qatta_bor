@@ -19,3 +19,4 @@ class Users(Base):
 
     # Relationships
     article = relationship("Article", back_populates="user")
+    tg_users = relationship("TgUsers",back_populates="user")
