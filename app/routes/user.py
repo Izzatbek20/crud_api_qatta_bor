@@ -49,4 +49,3 @@ async def router_user_delete(
     _service: UserService = Depends(user_service_dp)
 ):
     return await _service.delete(id)
-    

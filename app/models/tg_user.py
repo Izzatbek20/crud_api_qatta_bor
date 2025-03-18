@@ -8,7 +8,7 @@ class TgUsers(Base):
 
     user_id: Mapped[int] = mapped_column(Integer, ForeignKey("user.id"), nullable=False)
     chat_id: Mapped[int] = mapped_column(Integer, ForeignKey("tg_chat.id"), nullable=False)
-    region_id: Mapped[int] = mapped_column(Integer, ForeignKey("article.id"), nullable=False)
+    region_id: Mapped[int] = mapped_column(Integer, ForeignKey("articles.id"), nullable=False)
     fullname: Mapped[str] = mapped_column(String(255))
     username: Mapped[str] = mapped_column(String(255))
     latitude: Mapped[float] = mapped_column(Float)

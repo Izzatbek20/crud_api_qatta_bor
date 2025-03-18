@@ -1,5 +1,5 @@
 from sqlalchemy import Integer, Float, String, DateTime
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from database.database import Base
 from datetime import datetime
 from app.schemas.region import RegionStatus
@@ -14,3 +14,6 @@ class Region(Base):
     status: Mapped[str] = mapped_column(String(75), default=RegionStatus.ACTIV)
     created_at: Mapped[DateTime] = mapped_column(DateTime, default=datetime.now())
     updated_at: Mapped[DateTime] = mapped_column(DateTime)
+
+    #Relationships
+    article = relationship("Article", back_populates="region")

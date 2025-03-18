@@ -8,6 +8,7 @@ from app.services.article import ArticleService
 from app.services.article_view import ArticleViewService
 from app.services.article_saved import ArticleSavedService
 from app.services.article_media import ArticleMediaService
+from app.services.category import CategoryService
 
 #Repositories
 from app.repositories.user import UserRepository
@@ -16,6 +17,7 @@ from app.repositories.article import ArticleRepository
 from app.repositories.article_view import ArticleViewRepository
 from app.repositories.article_saved import ArticleSavedRepository
 from app.repositories.article_media import ArticleMediaRepository
+from app.repositories.category import CategoryRepository
 
 from database.database import get_db
 
@@ -37,3 +39,6 @@ def saved_service_dp(db: AsyncSession = Depends(get_db)) -> ArticleSavedService:
 #Article Media
 def media_service_dp(db: AsyncSession = Depends(get_db)) -> ArticleMediaService:
     return ArticleMediaService(repository=ArticleMediaRepository(session=db))
+#Category
+def category_service_dp(db: AsyncSession = Depends(get_db)) -> CategoryService:
+    return CategoryService(repository=CategoryRepository(session=db))
