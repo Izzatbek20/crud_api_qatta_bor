@@ -5,7 +5,7 @@ from enum import Enum
 class UserPayload(BaseModel):
     name: str
     username: str
-    password: str
+    password_hash: str
     role: "UserRole"
     photo: str
     status: "UserStatus"

@@ -9,7 +9,7 @@ class UserService(BaseService):
         return await self.repository.get_one(id)
     
     async def create(self, payload: dict):
-        await self.repository.create(payload)
+        await self.repository.create(payload.model_dump())
         return CreatedResponse()
 
     async def update(self, id: int, payload: dict):
@@ -17,7 +17,7 @@ class UserService(BaseService):
         if not user:
             return NotFoundResponse()
         
-        await self.repository.update(id, payload)
+        await self.repository.update(id, payload.model_dump())
         return UpdatedResponse()
     
     async def delete(self, id: int):
