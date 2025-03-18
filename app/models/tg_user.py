@@ -6,11 +6,11 @@ from datetime import datetime
 class TgUsers(Base):
     __tablename__ = "tg_users"
 
-    user_id: Mapped[int] = mapped_column(Integer, ForeignKey("user.id"), nullable=False) #[not null, note: "Telegram user id"]
-    chat_id: Mapped[int] = mapped_column(Integer, ForeignKey("tg_chat.id"), nullable=False) #[not null, note: "Telegram chat id"]
-    region_id: Mapped[int] = mapped_column(Integer, ForeignKey("article.id"), nullable=False) #[not null, note: "Mintaqa id."]
-    fullname: Mapped[str] = mapped_column(String(255)) #[note: "Telegramdagi user fullname"]
-    username: Mapped[str] = mapped_column(String(255)) #[note: "Telegramdagi user username"]
+    user_id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    chat_id: Mapped[int] = mapped_column(Integer)
+    region_id: Mapped[int] = mapped_column(Integer)
+    fullname: Mapped[str] = mapped_column(String(255))
+    username: Mapped[str] = mapped_column(String(255))
     latitude: Mapped[float] = mapped_column(Float)
     longitude: Mapped[float] = mapped_column(Float)
     created_at: Mapped[DateTime] = mapped_column(DateTime, default=datetime.now())

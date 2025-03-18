@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from datetime import datetime
+from enum import Enum
 
 class RegionResponse(BaseModel):
     # id: int
@@ -8,3 +9,8 @@ class RegionResponse(BaseModel):
     longitude: float
     created_at: datetime
     updated_at: datetime
+
+class RegionStatus(str, Enum):
+    ACTIV = "actived"
+    INACTIV = "inactived"
+    DELETE = "deleted"
