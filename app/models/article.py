@@ -3,6 +3,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from database.database import Base
 from datetime import datetime
 from app.models.region import Region
+from app.models.queue import Queue
 from app.schemas.article import ArticleStatus
 
 class Article(Base):

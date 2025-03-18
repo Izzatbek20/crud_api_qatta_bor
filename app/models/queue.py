@@ -11,11 +11,11 @@ class Queue(Base):
     article_id: Mapped[int] = mapped_column(Integer, ForeignKey("articles.id"), nullable=False)
     is_channel: Mapped[bool] = mapped_column(Boolean, default=False)
     is_user: Mapped[bool] = mapped_column(Boolean, default=False)
-    send_chat_id: Mapped[int] = mapped_column(Integer)
+    send_chat_id: Mapped[int] = mapped_column(Integer, nullable=True)
     region_id: Mapped[int] = mapped_column(Integer, ForeignKey("region.id"))
     body: Mapped[str] = mapped_column(Text)
     created_at: Mapped[DateTime] = mapped_column(DateTime, default=datetime.now())
-    updated_at: Mapped[DateTime] = mapped_column(DateTime)
+    updated_at: Mapped[DateTime] = mapped_column(DateTime, default=datetime.now())
 
     # Relationships
     article = relationship("Article", back_populates="queue", lazy='joined')

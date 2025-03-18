@@ -1,7 +1,9 @@
 from sqlalchemy import Integer, ForeignKey, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from database.database import Base
 from datetime import datetime
+
+from database.database import Base
+from app.models.tg_user import TgUsers
 
 class ArticleView(Base):
     __tablename__ = "article_views"
