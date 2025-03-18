@@ -1,1 +1,44 @@
-Generic single-database configuration.
+# Alembic
+
+## Migratsiya haqida
+
+> Loyihada migratsiya ikkiga bo'linga
+> `main` va `branch`.
+> + `main` - asosiy baza hisoblanadi
+> + `branch` - diynamik baza bo'lib filialga bog'langan filial ko'paygani sari `branch` bazalar ko'payaveradi.
+>
+> Ikkisigaham alohida migratsiya qilsa bo'ladi buning uchun biz loyiha ildiz papkasida joylashgan alembic `*.ini`
+> fayillari orqali migratsiya qilish imkonini qo'lga kiritamiz
+
+### Asosiy bazaga uchun .ini fayli
+
+*alembic_main.ini*
+
+```commandline
+alembic -c alembic_main.ini [command]
+```
+
+### Breanch bazalar uchun .ini fayli
+
+*alembic_branch.ini*
+
+```commandline
+alembic -c alembic_branch.ini [command]
+```
+
+## Migratsiyani komandalari
+
+```
+alembic -c alembic_main.ini revision --autogenerate -m "Initial"         # Sqlalchemy autogenerac
+
+alembic -c some_config.ini revision -m "Comment"      # Migratsiya yaratiladi
+
+alembic -c some_config.ini upgrade head                            # Migratsiyani barchasini bazaga yozish
+alembic -c some_config.ini downgrade base                          # Migratsiyani barchasini bazaga qaytarish
+
+alembic -c some_config.ini upgrade <ID>                            # ID bilan migratsiya qilish
+alembic -c some_config.ini downgrade <ID>                          # ID bilan migratsiya qaytarish
+
+alembic -c some_config.ini upgrade +1                              # Bita oldinga migratsiya yurish
+alembic -c some_config.ini downgrade -1                            # Bita orqaga migratsiya qaytarish
+```
