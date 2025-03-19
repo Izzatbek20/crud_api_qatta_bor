@@ -1,4 +1,5 @@
 from app.core.base import BaseService
+from app.auth.services import get_password_hash
 from app.core.exception import CreatedResponse, NotFoundResponse, UpdatedResponse, DeletedResponse
 
 class UserService(BaseService):
@@ -9,6 +10,7 @@ class UserService(BaseService):
         return await self.repository.get_one(id)
     
     async def create(self, payload: dict):
+        payload.password_hash = await get_password_hash(payload.password_hash)
         await self.repository.create(payload.model_dump())
         return CreatedResponse()
 
@@ -17,6 +19,7 @@ class UserService(BaseService):
         if not user:
             return NotFoundResponse()
         
+        payload['password_hash'] = await get_password_hash(payload['password_hash'])
         await self.repository.update(id, payload.model_dump())
         return UpdatedResponse()
     

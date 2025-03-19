@@ -7,7 +7,7 @@ class TgUsers(Base):
     __tablename__ = "tg_users"
 
     user_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id"), primary_key=True, nullable=False)
-    chat_id: Mapped[int] = mapped_column(Integer, ForeignKey("tg_chat.id"), nullable=False)
+    chat_id: Mapped[int] = mapped_column(Integer, nullable=False)
     region_id: Mapped[int] = mapped_column(Integer)
     fullname: Mapped[str] = mapped_column(String(255))
     username: Mapped[str] = mapped_column(String(255))
@@ -19,4 +19,6 @@ class TgUsers(Base):
     # Relations
     #chat = relationship("Chat", back_populates="tg_users")
     user = relationship("Users", primaryjoin="Users.id==TgUsers.user_id" ,back_populates="tg_users")
+    article_view = relationship("ArticleView",back_populates="tg_user")
+    article_saved = relationship("ArticleSaved",back_populates="tg_user")
     #region = relationship("Region", back_populates="tg_users")

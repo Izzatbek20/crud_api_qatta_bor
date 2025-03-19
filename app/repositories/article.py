@@ -13,7 +13,7 @@ class ArticleRepository(BaseRepository):
         query = select(Article)
 
         if page_params:
-            return pagination(self.session, query, page_params)
+            return await pagination(self.session, query, page_params)
         else:
             result = await self.session.execute(query)
             return result.scalars().all()
