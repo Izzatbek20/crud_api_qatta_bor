@@ -25,22 +25,22 @@ async def router_region_get_one(
 ) -> Page[TgUsersResponse]:
     return await _service.get_one(id)
 
-@router.post("/tg_users/create",summary="Yangi telegram user uchun malumot yaratish")
-async def router_article_create(
-    payload: TgUserPayload,
-    current_user: Users = Depends(get_current_user),
-    _service: TgUserService = Depends(tguser_service_dp)
-) -> Page[TgUsersResponse]:
-    return await _service.create(payload)
+# @router.post("/tg_users/create",summary="Yangi telegram user uchun malumot yaratish")
+# async def router_article_create(
+#     payload: TgUserPayload,
+#     current_user: Users = Depends(get_current_user),
+#     _service: TgUserService = Depends(tguser_service_dp)
+# ) -> Page[TgUsersResponse]:
+#     return await _service.create(payload)
 
-@router.put("/tg_user/{id}/update",summary="Telegram user ma'lumotlarini yangilash")
-async def router_article_update(
-    id: int,
-    payload: TgUserPayload,
-    current_user: Users = Depends(get_current_user),
-    _service: TgUserService = Depends(tguser_service_dp)
-) -> Page[TgUsersResponse]:
-    return await _service.get_all(id, payload)
+# @router.put("/tg_user/{id}/update",summary="Telegram user ma'lumotlarini yangilash")
+# async def router_article_update(
+#     id: int,
+#     payload: TgUserPayload,
+#     current_user: Users = Depends(get_current_user),
+#     _service: TgUserService = Depends(tguser_service_dp)
+# ) -> Page[TgUsersResponse]:
+#     return await _service.get_all(id, payload)
 
 @router.delete("/tg_users/{id}/delete",summary="Telegram user malumotlarini bazadan o'chirish")
 async def router_article_delete(

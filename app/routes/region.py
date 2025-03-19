@@ -25,22 +25,22 @@ async def router_region_get_one(
 ) -> Page[RegionResponse]:
     return await _service.get_one(id)
 
-@router.post("/articles/create",summary="Yangi artikl yaratish")
-async def router_article_create(
-    payload: RegionPayload,
-    current_user: Users = Depends(get_current_user),
-    _service: RegionService = Depends(region_service_dp)
-) -> Page[RegionResponse]:
-    return await _service.create(payload)
+# @router.post("/articles/create",summary="Yangi artikl yaratish")
+# async def router_article_create(
+#     payload: RegionPayload,
+#     current_user: Users = Depends(get_current_user),
+#     _service: RegionService = Depends(region_service_dp)
+# ) -> Page[RegionResponse]:
+#     return await _service.create(payload)
 
-@router.put("/articles/{id}/update",summary="Artikl ma'lumotlarini yangilash")
-async def router_article_update(
-    id: int,
-    payload: RegionPayload,
-    current_user: Users = Depends(get_current_user),
-    _service: RegionService = Depends(region_service_dp)
-) -> Page[RegionResponse]:
-    return await _service.get_all(id, payload)
+# @router.put("/articles/{id}/update",summary="Artikl ma'lumotlarini yangilash")
+# async def router_article_update(
+#     id: int,
+#     payload: RegionPayload,
+#     current_user: Users = Depends(get_current_user),
+#     _service: RegionService = Depends(region_service_dp)
+# ) -> Page[RegionResponse]:
+#     return await _service.get_all(id, payload)
 
 @router.delete("/articles/{id}/delete",summary="Artiklni o'chirish")
 async def router_article_delete(

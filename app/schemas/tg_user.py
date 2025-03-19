@@ -11,3 +11,6 @@ class TgUsersResponse(BaseModel):
     longitude: float
     created_at: datetime
     updated_at: datetime
+
+class TgUserPayload(TgUsersResponse):
+    pass

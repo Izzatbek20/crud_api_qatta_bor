@@ -9,7 +9,7 @@ from app.utils.pagination import Page, PageParams, get_page_params
 
 router = APIRouter()
 
-@router.get("/category", summary="Barcha categoriyalarni olish")
+@router.get("/queue", summary="Barcha queuelarni olish")
 async def router_get_all(
     #current_user: Users = Depends(get_current_user),
     page_params: PageParams = Depends(get_page_params),
@@ -17,7 +17,7 @@ async def router_get_all(
 ) -> Page[QueueResponse]:
     return await _service.get_all(page_params)
 
-@router.get("/category_one", summary="Aniq categoriyaning malumotlarni olish")
+@router.get("/queue_one", summary="Aniq cqueuening malumotlarni olish")
 async def router_get_one(
     id: int,
     # current_user: Users = Depends(get_current_user),
@@ -26,7 +26,7 @@ async def router_get_one(
 ) -> QueueResponse:
     return await _service.get_one(id)
 
-@router.post("/category", summary="Yangi categoriya yaratish")
+@router.post("/queue", summary="Yangi queue yaratish")
 async def reouter_create(
     payload: QueueResponse,
     # current_user: Users = Depends(get_current_user),
@@ -34,7 +34,7 @@ async def reouter_create(
 ):
     return await _service.create(payload)
 
-@router.put("/category", summary="Categoriya ma'lumotlarini yangilash")
+@router.put("/queue", summary="queue ma'lumotlarini yangilash")
 async def reouter_update(
     id: int,
     payload: QueueResponse,
@@ -43,7 +43,7 @@ async def reouter_update(
 ):
     return await _service.create(id, payload)
 
-@router.delete("/category", summary="Categoriyani o'chirish")
+@router.delete("/queue", summary="queueni o'chirish")
 async def router_delete(
     id: int,
     # current_user: Users = Depends(get_current_user),
