@@ -2,15 +2,15 @@ from sqlalchemy import insert, update, delete
 from sqlalchemy.future import select
 
 from app.core.base import BaseRepository
-from app.models.article import Article
+from app.models.region import Region
 from app.utils.pagination import PageParams, pagination
 
-class ArticleRepository(BaseRepository):
+class RegionRepository(BaseRepository):
     async def get_all(self, page_params: PageParams = None):
         """
-            Barcha articlelarni olish
+            Barcha Regionlarni olish
         """
-        query = select(Article)
+        query = select(Region)
 
         if page_params:
             return await pagination(self.session, query, page_params)
@@ -20,17 +20,17 @@ class ArticleRepository(BaseRepository):
         
     async def get_one(self, id: int):
         """
-            Article haqida to'liq ma'lumot olish
+            Region haqida to'liq ma'lumot olish
         """
-        query = select(Article).where(Article.id==id)
+        query = select(Region).where(Region.id==id)
         result = await self.session.execute(query)
         return result.scalar_one_or_none()
     
     async def create(self, payload: dict, flush: bool = False, commit: bool = True) -> int | bool:
         """
-            Yangi article yaratish
+            Yangi region yaratish
         """
-        query = insert(Article).values(payload)
+        query = insert(Region).values(payload)
         exc = await self.session.execute(query)
     
         if flush:
@@ -42,9 +42,9 @@ class ArticleRepository(BaseRepository):
     
     async def update(self, id: int, payload: dict, flush: bool = False, commit: bool = True) -> int | bool:
         """
-            Article ma'lumotlarini yangilash
+            Region ma'lumotlarini yangilash
         """
-        query = update(Article).where(Article.id==id).values(payload)
+        query = update(Region).where(Region.id==id).values(payload)
         exc = await self.session.execute(query)
 
         if flush:
@@ -56,8 +56,8 @@ class ArticleRepository(BaseRepository):
         
     async def delete(self, id: int):
         """
-            Articleni o'chirish
+            Region o'chirish
         """
-        query = delete(Article).where(Article.id==id)
+        query = delete(Region).where(Region.id==id)
         await self.session.execute(query)
         await self.session.commit()

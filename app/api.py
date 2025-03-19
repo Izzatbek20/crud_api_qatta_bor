@@ -3,7 +3,7 @@ from fastapi import APIRouter
 # Auth
 from .auth.login import auth_route
 
-from app.routes import user, article_banner, article_media, article, article_saved, article_view, category
+from app.routes import user, article_banner, article_media, article, article_saved, article_view, category, queue
 
 api = APIRouter()
 
@@ -18,3 +18,4 @@ api.include_router(article_media.router, tags=["Article media"])
 api.include_router(article_saved.router, tags=["Article saved"])
 api.include_router(article_view.router, tags=["Article view"])
 api.include_router(category.router, tags=["Category"])
+api.include_router(queue.router, tags=["Queue"])

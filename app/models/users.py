@@ -10,6 +10,7 @@ class Users(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(255))
     username: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
+    refresh_token: Mapped[str] = mapped_column(String(255), nullable=True)
     password_hash: Mapped[str] = mapped_column(String(255))
     role: Mapped[str] = mapped_column(String(75), default=UserRole.ADMIN)
     photo: Mapped[str] = mapped_column(String(255), nullable=True)

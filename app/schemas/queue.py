@@ -1,8 +1,9 @@
 from pydantic import BaseModel
 from datetime import datetime
 
-class queueResponse(BaseModel):
-    id: int
+class QueueResponse(BaseModel):
+
+    #id: int
     article_id: int
     is_channel: bool
     is_user: bool
