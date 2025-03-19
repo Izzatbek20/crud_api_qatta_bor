@@ -24,7 +24,7 @@ class Article(Base):
     start_date: Mapped[DateTime] = mapped_column(DateTime)
     end_date: Mapped[DateTime] = mapped_column(DateTime)
     created_at: Mapped[DateTime] = mapped_column(DateTime, default=datetime.now())
-    updated_at: Mapped[DateTime] = mapped_column(DateTime)
+    updated_at: Mapped[DateTime] = mapped_column(DateTime, default=datetime.now())
 
     #Relationship
     user = relationship("Users", back_populates="article")

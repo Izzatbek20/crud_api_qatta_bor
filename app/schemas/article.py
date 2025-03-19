@@ -29,6 +29,7 @@ class ArticleCreatePayload(BaseModel):
     is_ad_url: str
     title: str
     body: str
+    status: ArticleStatus
     latitude: float | None
     longitude: float | None
     start_date: datetime
@@ -37,6 +38,5 @@ class ArticleCreatePayload(BaseModel):
 class ArticleResponse(ArticleCreatePayload):
     id: int
     views: int
-    status: ArticleStatus
     created_at: datetime
     updated_at: datetime

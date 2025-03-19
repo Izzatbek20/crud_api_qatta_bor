@@ -23,7 +23,7 @@ async def router_article_get_one(
     id: int,
     current_user: Users = Depends(get_current_user),
     _service: ArticleService = Depends(article_service_dp)
-) -> Page[ArticleResponse]:
+) -> ArticleResponse:
     return await _service.get_one(id)
 
 @router.post("/articles/create",summary="Yangi artikl yaratish")

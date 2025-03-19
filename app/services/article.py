@@ -10,6 +10,7 @@ class ArticleService(BaseService):
     async def get_one(self, id: int):
         return await self.repository.get_one(id)
 
+
     async def create(self, payload: dict):
         await self.repository.create(payload.model_dump())
         return CreatedResponse()

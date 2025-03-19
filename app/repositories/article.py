@@ -25,7 +25,7 @@ class ArticleRepository(BaseRepository):
         """
         query = select(Article).where(Article.id==id)
         result = await self.session.execute(query)
-        return result.scalar_one_or_none()
+        return result.unique().scalar_one_or_none()
 
     async def create(self, payload: dict, flush: bool = False, commit: bool = True) -> int | bool:
         """
