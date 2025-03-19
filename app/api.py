@@ -3,7 +3,7 @@ from fastapi import APIRouter
 # Auth
 from .auth.login import auth_route
 
-from app.routes import user, article_banner, article_media, article, article_saved, article_view, category, region, tg_user, settings
+from app.routes import user, article_banner, article_media, article, article_saved, article_view, category, region, tg_user, settings, queue
 
 api = APIRouter()
 
@@ -21,3 +21,4 @@ api.include_router(category.router, tags=["Category"])
 api.include_router(region.router, tags=["Region"])
 api.include_router(tg_user.router, tags=["Telegram user"])
 api.include_router(settings.router, tags=["Settings"])
+api.include_router(queue.router, tags=["Queue"])

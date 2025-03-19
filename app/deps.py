@@ -12,6 +12,7 @@ from app.services.category import CategoryService
 from app.services.region import RegionService
 from app.services.settings import SettingsService
 from app.services.tg_user import TgUserService
+from app.services.queue import QueueService
 
 #Repositories
 from app.repositories.user import UserRepository
@@ -24,6 +25,7 @@ from app.repositories.category import CategoryRepository
 from app.repositories.region import RegionRepository
 from app.repositories.settings import SettingsRepository
 from app.repositories.tg_user import TgUserRepository
+from app.repositories.queue import QueueRepository
 
 from database.database import get_db
 
@@ -57,3 +59,6 @@ def settings_service_dp(db: AsyncSession = Depends(get_db)) -> SettingsService:
 #Telegram user
 def tguser_service_dp(db: AsyncSession = Depends(get_db)) -> TgUserService:
     return TgUserService(repository=TgUserRepository(session=db))
+#Queue
+def queue_service_dp(db: AsyncSession = Depends(get_db)) -> QueueService:
+    return QueueService(repository=QueueRepository(session=db))
