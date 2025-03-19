@@ -33,7 +33,7 @@ async def router_article_get_one(
 # ) -> Page[ArticleResponse]:
 #     return await _service.create(payload)
 
-# @router.get("/articles/{id}/update",summary="Artikl ma'lumotlarini yangilash")
+# @router.put("/articles/{id}/update",summary="Artikl ma'lumotlarini yangilash")
 # async def router_article_update(
 #     id: int,
 #     payload: ArticlePayload,
