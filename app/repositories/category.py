@@ -3,14 +3,18 @@ from sqlalchemy import insert, delete, update
 
 from app.core.base import BaseRepository
 from app.models.category import Category
+from app.schemas.category import CategoryStatus
 from app.utils.pagination import PageParams, pagination
 
 class CategoryRepository(BaseRepository):
-    async def get_all(self, page_params: PageParams = None):
+    async def get_all(self, status: CategoryStatus, parent_id: int = 0, page_params: PageParams = None):
         """
             Barcha ma'lumotlarni olish
         """
-        query = select(Category)
+        query = select(Category).where(Category.parent_id==0).where(Category.status==status)
+
+        if parent_id != 0 and status:
+            query = select(Category).where(Category.parent_id==parent_id).where(Category.status==status)
 
         if page_params:
             return await pagination(self.session, query, page_params)
@@ -58,7 +62,8 @@ class CategoryRepository(BaseRepository):
         """
             Ma'lumotlarni o'chirish
         """
-        query = delete(Category).where(Category.id==id)
+        value = {'status':CategoryStatus.DELETED}
+        query = update(Category).where(Category.id==id).values(value)
         await self.session.execute(query)
         await self.session.commit()
         return True
