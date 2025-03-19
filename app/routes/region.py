@@ -27,7 +27,7 @@ async def router_region_get_one(
 ) -> Page[RegionResponse]:
     return await _service.get_one(id)
 
-@router.post("/articles/create",summary="Yangi artikl yaratish")
+@router.post("/region/create",summary="Yangi region yaratish")
 async def router_article_create(
     payload: RegionCreatePayload,
     current_user: Users = Depends(get_current_user),
@@ -35,7 +35,7 @@ async def router_article_create(
 ) -> Page[RegionResponse]:
     return await _service.create(payload)
 
-@router.put("/articles/{id}/update",summary="Artikl ma'lumotlarini yangilash")
+@router.put("/region/{id}/update",summary="Region ma'lumotlarini yangilash")
 async def router_article_update(
     id: int,
     payload: RegionUpdatePayload,
@@ -44,7 +44,7 @@ async def router_article_update(
 ) -> Page[RegionResponse]:
     return await _service.get_all(id, payload)
 
-@router.delete("/articles/{id}/delete",summary="Artiklni o'chirish")
+@router.delete("/region/{id}/delete",summary="Regionni o'chirish")
 async def router_article_delete(
     id: int,
     current_service: Users = Depends(get_current_user),

@@ -4,8 +4,7 @@ from app.schemas.region import RegionStatus
 from app.utils.pagination import PageParams
 
 class RegionService(BaseService):
-    async def get_all(self,status: RegionStatus, parent_id = 0, page_params: PageParams = None):
-        print(await self.repository.get_all(status, parent_id, page_params))
+    async def get_all(self, status: RegionStatus, parent_id = 0, page_params: PageParams = None):
         return await self.repository.get_all(status, parent_id, page_params)
 
     async def get_one(self, id: int):

@@ -63,6 +63,6 @@ class RegionRepository(BaseRepository):
             Region o'chirish
         """
         value = {"status": RegionStatus.DELETE}
-        query = delete(Region).where(Region.id==id).values(value)
+        query = update(Region).where(Region.id==id).values(value)
         await self.session.execute(query)
         await self.session.commit()

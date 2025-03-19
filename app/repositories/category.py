@@ -62,7 +62,7 @@ class CategoryRepository(BaseRepository):
         """
             Ma'lumotlarni o'chirish
         """
-        value = {'status':CategoryStatus.DELETED}
+        value = {'status': CategoryStatus.DELETED}
         query = update(Category).where(Category.id==id).values(value)
         await self.session.execute(query)
         await self.session.commit()
