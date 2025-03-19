@@ -9,6 +9,7 @@ from app.services.article_view import ArticleViewService
 from app.services.article_saved import ArticleSavedService
 from app.services.article_media import ArticleMediaService
 from app.services.category import CategoryService
+from app.services.region import RegionService
 
 #Repositories
 from app.repositories.user import UserRepository
@@ -18,6 +19,7 @@ from app.repositories.article_view import ArticleViewRepository
 from app.repositories.article_saved import ArticleSavedRepository
 from app.repositories.article_media import ArticleMediaRepository
 from app.repositories.category import CategoryRepository
+from app.repositories.region import RegionRepository
 
 from database.database import get_db
 
@@ -42,3 +44,6 @@ def media_service_dp(db: AsyncSession = Depends(get_db)) -> ArticleMediaService:
 #Category
 def category_service_dp(db: AsyncSession = Depends(get_db)) -> CategoryService:
     return CategoryService(repository=CategoryRepository(session=db))
+#Region
+def region_service_dp(db: AsyncSession = Depends(get_db)) -> RegionService:
+    return RegionService(repository=RegionRepository(session=db))
