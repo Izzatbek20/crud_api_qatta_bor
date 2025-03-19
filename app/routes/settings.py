@@ -17,7 +17,7 @@ async def router_region_get_all(
 ) -> Page[SettingsResponse]:
     return await _service.get_all(page_params)
 
-@router.get("/region/{id}",summary="Region haqida to'liq ma'lumot olish")
+@router.get("/settings/{id}",summary="Sozlamalar haqida to'liq ma'lumot olish")
 async def router_region_get_one(
     id: int,
     current_user: Users = Depends(get_current_user),
@@ -25,7 +25,7 @@ async def router_region_get_one(
 ) -> Page[SettingsResponse]:
     return await _service.get_one(id)
 
-# @router.post("/articles/create",summary="Yangi artikl yaratish")
+# @router.post("/settings/create",summary="Yangi sozlama yaratish")
 # async def router_article_create(
 #     payload: SettingsPayload,
 #     current_user: Users = Depends(get_current_user),
@@ -33,7 +33,7 @@ async def router_region_get_one(
 # ) -> Page[SettingsResponse]:
 #     return await _service.create(payload)
 
-# @router.put("/articles/{id}/update",summary="Artikl ma'lumotlarini yangilash")
+# @router.put("/settings/{id}/update",summary="Sozlama ma'lumotlarini yangilash")
 # async def router_article_update(
 #     id: int,
 #     payload: SettingsPayload,
@@ -42,8 +42,8 @@ async def router_region_get_one(
 # ) -> Page[SettingsResponse]:
 #     return await _service.get_all(id, payload)
 
-@router.delete("/articles/{id}/delete",summary="Artiklni o'chirish")
-async def router_article_delete(
+@router.delete("/settings/{id}/delete",summary="Sozlama o'chirish")
+async def router_settings_delete(
     id: int,
     current_service: Users = Depends(get_current_user),
     _service: SettingsService = Depends(settings_service_dp)
