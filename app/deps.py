@@ -11,6 +11,7 @@ from app.services.article_media import ArticleMediaService
 from app.services.category import CategoryService
 from app.services.region import RegionService
 from app.services.settings import SettingsService
+from app.services.tg_user import TgUserService
 
 #Repositories
 from app.repositories.user import UserRepository
@@ -22,6 +23,7 @@ from app.repositories.article_media import ArticleMediaRepository
 from app.repositories.category import CategoryRepository
 from app.repositories.region import RegionRepository
 from app.repositories.settings import SettingsRepository
+from app.repositories.tg_user import TgUserRepository
 
 from database.database import get_db
 
@@ -52,3 +54,6 @@ def region_service_dp(db: AsyncSession = Depends(get_db)) -> RegionService:
 #Settings
 def settings_service_dp(db: AsyncSession = Depends(get_db)) -> SettingsService:
     return SettingsService(repository=SettingsRepository(session=db))
+#Telegram user
+def tguser_service_dp(db: AsyncSession = Depends(get_db)) -> TgUserService:
+    return TgUserService(repository=TgUserRepository(session=db))
