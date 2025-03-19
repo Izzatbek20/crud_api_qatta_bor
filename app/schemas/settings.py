@@ -6,3 +6,6 @@ class SettingsResponse(BaseModel):
     channels: str
     created_at: datetime
     updated_at: datetime
+
+class SettingsPayload(SettingsResponse):
+    pass
