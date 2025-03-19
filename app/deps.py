@@ -10,6 +10,7 @@ from app.services.article_saved import ArticleSavedService
 from app.services.article_media import ArticleMediaService
 from app.services.category import CategoryService
 from app.services.region import RegionService
+from app.services.settings import SettingsService
 
 #Repositories
 from app.repositories.user import UserRepository
@@ -20,6 +21,7 @@ from app.repositories.article_saved import ArticleSavedRepository
 from app.repositories.article_media import ArticleMediaRepository
 from app.repositories.category import CategoryRepository
 from app.repositories.region import RegionRepository
+from app.repositories.settings import SettingsRepository
 
 from database.database import get_db
 
@@ -47,3 +49,6 @@ def category_service_dp(db: AsyncSession = Depends(get_db)) -> CategoryService:
 #Region
 def region_service_dp(db: AsyncSession = Depends(get_db)) -> RegionService:
     return RegionService(repository=RegionRepository(session=db))
+#Settings
+def settings_service_dp(db: AsyncSession = Depends(get_db)) -> SettingsService:
+    return SettingsService(repository=SettingsRepository(session=db))
