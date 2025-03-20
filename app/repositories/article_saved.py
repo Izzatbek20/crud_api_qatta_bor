@@ -1,5 +1,6 @@
 from sqlalchemy import insert, update, delete
 from sqlalchemy.future import select
+from sqlalchemy.orm import joinedload
 
 from app.core.base import BaseRepository
 from app.models.article_saved import ArticleSaved
@@ -15,12 +16,12 @@ class ArticleSavedRepository(BaseRepository):
         """
             Barcha ma'lumotlarni olish
         """
-        query = select(ArticleSaved)
+        query = select(ArticleSaved).options(joinedload(ArticleSaved.article), joinedload(ArticleSaved.tg_user))
 
         if article_id:
-            query = select(ArticleSaved).join(Article, ArticleSaved.article_id==Article.id).where(Article.id==int(article_id))
-        elif tg_user_id:
-            query = select(ArticleSaved).join(TgUsers, ArticleSaved.tg_user_id==TgUsers.user_id).where(TgUsers.user_id==int(tg_user_id))
+            query = query.where(ArticleSaved.article_id==article_id)
+        if tg_user_id:
+            query = query.where(ArticleSaved.tg_user_id==tg_user_id)
 
         if page_params:
             return await pagination(self.session, query, page_params)

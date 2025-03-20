@@ -35,6 +35,10 @@ class ArticleCreatePayload(BaseModel):
     start_date: datetime
     end_date: datetime
 
+class ArticleTitleResponse(BaseModel):
+    id: int
+    title: str
+
 class ArticleResponse(ArticleCreatePayload):
     id: int
     views: int
