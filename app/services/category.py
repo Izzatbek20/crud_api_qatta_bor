@@ -6,8 +6,8 @@ from app.schemas.category import CategoryStatus
 from app.utils.pagination import PageParams
 
 class CategoryService(BaseService[CategoryRepository]):
-    async def get_all(self, status: CategoryStatus, title: str = None, parent_id: int = 0, category_id: int = 0, page_params: PageParams = None):
-        return await self.repository.get_all(status, title, parent_id, category_id, page_params)
+    async def get_all(self, status: CategoryStatus, title: str = None, parent_id: int = 0, page_params: PageParams = None):
+        return await self.repository.get_all(status, title, parent_id, page_params)
 
     async def get_one(self, id: int):
         return await self.repository.get_one(id)

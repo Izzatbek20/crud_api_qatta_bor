@@ -8,18 +8,14 @@ from app.schemas.category import CategoryStatus
 from app.utils.pagination import PageParams, pagination
 
 class CategoryRepository(BaseRepository):
-    async def get_all(self, status: CategoryStatus, title: str = None, parent_id: int = 0, category_id: int = 0, page_params: PageParams = None):
+    async def get_all(self, status: CategoryStatus, title: str = None, parent_id: int = 0, page_params: PageParams = None):
         """
             Barcha ma'lumotlarni olish
         """
-        query = select(Category).options(
-            joinedload(Category.article)
-        )
+        query = select(Category)
 
         if title:
             query = query.where(Category.title.ilike(f"%{title}%"))
-        if category_id != 0:
-            query = query.where(Category.id==category_id)
         if parent_id != 0 and status:
             query = query.where(Category.parent_id==parent_id).where(Category.status==status)
 

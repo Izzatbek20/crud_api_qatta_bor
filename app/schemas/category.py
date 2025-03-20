@@ -21,7 +21,6 @@ class CategoryResponse(CategoryCreatePayload):
     id: int
     position: int
     status: "CategoryStatus"
-    article: List[ArticleResponse]
     created_at: datetime
     updated_at: datetime
 
