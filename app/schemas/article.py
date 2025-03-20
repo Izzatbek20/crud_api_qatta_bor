@@ -18,7 +18,7 @@ class ArticleResponse(BaseModel):
     start_date: datetime
     end_date: datetime
     created_at: datetime
-    updated_at: datetime
+    updated_at: datetime 
 
 class ArticleStatus(str, Enum):
     INACTIV = "inactived"

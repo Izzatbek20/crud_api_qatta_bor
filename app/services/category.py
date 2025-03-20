@@ -13,7 +13,7 @@ class CategoryService(BaseService[CategoryRepository]):
         return await self.repository.get_one(id)
 
     async def create(self, payload: dict):
-        await self.repository.create(payload.model_dump())
+        await self.repository.create(payload)
         return CreatedResponse()
 
     async def update(self, id: int, payload: dict):
@@ -21,7 +21,7 @@ class CategoryService(BaseService[CategoryRepository]):
         if not result:
             return NotFoundResponse()
         else:
-            await self.repository.create(payload.model_dump())
+            await self.repository.create(payload)
             return UpdatedResponse()
 
     async def delete(self, id: int):

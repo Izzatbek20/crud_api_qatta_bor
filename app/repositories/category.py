@@ -1,5 +1,5 @@
 from sqlalchemy.future import select
-from sqlalchemy import insert, delete, update
+from sqlalchemy import insert, update
 
 from app.core.base import BaseRepository
 from app.models.category import Category
