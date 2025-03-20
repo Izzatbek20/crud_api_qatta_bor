@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from datetime import datetime
 
-class TgUsersResponse(BaseModel):
+class TgUserPayload(BaseModel):
     user_id: int
     chat_id: int
     region_id: int
@@ -9,8 +9,7 @@ class TgUsersResponse(BaseModel):
     username: int
     latitude: float
     longitude: float
+
+class TgUsersResponse(TgUserPayload):
     created_at: datetime
     updated_at: datetime
-
-class TgUserPayload(TgUsersResponse):
-    pass
