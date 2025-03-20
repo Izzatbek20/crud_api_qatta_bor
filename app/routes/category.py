@@ -1,10 +1,12 @@
-from fastapi import Depends, APIRouter
+from fastapi import Depends, APIRouter, UploadFile, File, Form
+from typing import Union
 
 from app.auth.services import get_current_user
 from app.models.users import Users
 from app.services.category import CategoryService
 from app.schemas.category import CategoryResponse, CategoryCreatePayload, CategoryUpdatePayload, CategoryStatus
 from app.deps import category_service_dp
+from app.utils.utils import save_file
 from app.utils.pagination import Page, PageParams, get_page_params
 
 router = APIRouter()
@@ -30,19 +32,45 @@ async def router_get_one(
 
 @router.post("/category/create", summary="Yangi categoriya yaratish")
 async def reouter_create_category(
-    payload: CategoryCreatePayload,
+    parent_id: int = Form(description="Parent id",repr=False),
+    title: str = Form(description="Title",repr=False),
+    description: str = Form(description="Description",repr=False),
+    photo: Union[UploadFile, str, None] = File(None, description="photo"),
     current_user: Users = Depends(get_current_user),
     _service: CategoryService = Depends(category_service_dp)
 ):
+    payload = {
+        'parent_id': parent_id,
+        'title':title,
+        'description':description,
+        'photo':photo
+    }
+
+    if photo:
+        rest = await save_file('category_photo',photo)
+        payload['photo'] = rest['path']
     return await _service.create(payload)
 
 @router.put("/category/{id}/update", summary="Categoriya ma'lumotlarini yangilash")
 async def router_update_category(
     id: int,
-    payload: CategoryUpdatePayload,
+    parent_id: int = Form(description="Parent id",repr=False),
+    title: str = Form(description="Title",repr=False),
+    description: str = Form(description="Description",repr=False),
+    photo: Union[UploadFile, str, None] = File(None, description="photo"),
     current_user: Users = Depends(get_current_user),
     _service: CategoryService = Depends(category_service_dp)
 ):
+    payload = {
+        'parent_id': parent_id,
+        'title':title,
+        'description':description,
+        'photo':photo
+    }
+
+    if photo:
+        rest = await save_file('category_photo',photo)
+        payload['photo'] = rest['path']
     return await _service.create(id, payload)
 
 @router.put("/category/{id}/delete", summary="Categoriyani o'chirish")

@@ -1,4 +1,5 @@
 from sqlalchemy import insert, update, delete
+from sqlalchemy.orm import selectinload
 from sqlalchemy.future import select
 
 from app.core.base import BaseRepository
@@ -10,7 +11,9 @@ class TgUserRepository(BaseRepository):
         """
             Barcha Telegram userlarni olish
         """
-        query = select(TgUsers)
+        query = select(TgUsers).options(
+            selectinload(TgUsers.region)
+        )
 
         if page_params:
             return await pagination(self.session, query, page_params)

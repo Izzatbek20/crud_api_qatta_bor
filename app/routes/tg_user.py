@@ -30,7 +30,7 @@ async def router_article_create(
     payload: TgUserPayload,
     current_user: Users = Depends(get_current_user),
     _service: TgUserService = Depends(tguser_service_dp)
-) -> TgUsersResponse:
+):
     return await _service.create(payload)
 
 @router.put("/tg_user/{id}/update",summary="Telegram user ma'lumotlarini yangilash")
@@ -39,7 +39,7 @@ async def router_article_update(
     payload: TgUserPayload,
     current_user: Users = Depends(get_current_user),
     _service: TgUserService = Depends(tguser_service_dp)
-) -> TgUsersResponse:
+):
     return await _service.get_all(id, payload)
 
 @router.delete("/tg_users/{id}/delete",summary="Telegram user malumotlarini bazadan o'chirish")
