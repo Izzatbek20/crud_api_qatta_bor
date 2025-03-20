@@ -2,6 +2,10 @@ from pydantic import BaseModel
 from datetime import datetime
 from enum import Enum
 
+class RegionTitleResponse(BaseModel):
+    id: int
+    title: str
+
 class RegionResponse(BaseModel):
     id: int
     title: str

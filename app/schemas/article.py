@@ -2,6 +2,19 @@ from pydantic import BaseModel, Field
 from enum import Enum
 from datetime import datetime
 
+class ArticlePayload(BaseModel):
+    author_id: int
+    categorie_id: int
+    region_id: int
+    is_ad: bool
+    is_ad_url: str
+    title: str
+    body: str
+    latitude: float
+    longitude: float
+    start_date: datetime
+    end_date: datetime
+
 class ArticleResponse(BaseModel):
     id: int
     author_id: int

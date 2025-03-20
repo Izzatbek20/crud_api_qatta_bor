@@ -2,7 +2,7 @@ from fastapi import Depends, APIRouter
 
 from app.auth.services import get_current_user
 from app.models.users import Users
-from app.schemas.article import ArticleResponse
+from app.schemas.article import ArticleResponse, ArticlePayload
 from app.services.article import ArticleService
 from app.deps import article_service_dp
 from app.utils.pagination import Page, PageParams, get_page_params
@@ -25,13 +25,13 @@ async def router_article_get_one(
 ) -> Page[ArticleResponse]:
     return await _service.get_one(id)
 
-# @router.post("/articles/create",summary="Yangi artikl yaratish")
-# async def router_article_create(
-#     payload: ArticlePayload,
-#     current_user: Users = Depends(get_current_user),
-#     _service: ArticleService = Depends(article_service_dp)
-# ) -> Page[ArticleResponse]:
-#     return await _service.create(payload)
+@router.post("/articles/create",summary="Yangi artikl yaratish")
+async def router_article_create(
+    payload: ArticlePayload,
+    current_user: Users = Depends(get_current_user),
+    _service: ArticleService = Depends(article_service_dp)
+) -> Page[ArticleResponse]:
+    return await _service.create(payload)
 
 # @router.put("/articles/{id}/update",summary="Artikl ma'lumotlarini yangilash")
 # async def router_article_update(

@@ -1,7 +1,8 @@
 from sqlalchemy import Integer, Float, String, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from database.database import Base
 from datetime import datetime
+
+from database.database import Base
 from app.schemas.region import RegionStatus
 
 class Region(Base):
@@ -18,3 +19,4 @@ class Region(Base):
     #Relationships
     article = relationship("Article", back_populates="region")
     queue = relationship("Queue", back_populates="region")
+    tg_users = relationship("TgUsers",back_populates="region")
