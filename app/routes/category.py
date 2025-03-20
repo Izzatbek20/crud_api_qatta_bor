@@ -14,18 +14,19 @@ router = APIRouter()
 @router.get("/category", summary="Barcha categoriyalarni olish")
 async def router_get_all(
     status: CategoryStatus,
+    title: str = None,
     parent_id: int = 0,
+    category_id: int = 0,
     current_user: Users = Depends(get_current_user),
     page_params: PageParams = Depends(get_page_params),
     _service: CategoryService = Depends(category_service_dp)
 ) -> Page[CategoryResponse]:
-    return await _service.get_all(status, parent_id, page_params)
+    return await _service.get_all(status, title, parent_id, category_id, page_params)
 
 @router.get("/category/{id}", summary="Aniq categoriyaning malumotlarni olish")
 async def router_get_one(
     id: int,
     current_user: Users = Depends(get_current_user),
-    page_params: PageParams = Depends(get_page_params),
     _service: CategoryService = Depends(category_service_dp)
 ) -> CategoryResponse:
     return await _service.get_one(id)

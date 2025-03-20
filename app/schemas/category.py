@@ -1,6 +1,9 @@
 from pydantic import BaseModel
 from datetime import datetime
 from enum import Enum
+from typing import List
+
+from app.schemas.article import ArticleResponse
 
 class CategoryUpdatePayload(BaseModel):
     parent_id: int | None
@@ -18,6 +21,7 @@ class CategoryResponse(CategoryCreatePayload):
     id: int
     position: int
     status: "CategoryStatus"
+    article: List[ArticleResponse]
     created_at: datetime
     updated_at: datetime
 
