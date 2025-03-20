@@ -8,7 +8,10 @@ class ArticleSavedService(BaseService):
     article_id: int = None,
     tg_user_id: int = None,
     page_params: PageParams = None):
-        return await self.repository.get_all(article_id, tg_user_id, page_params)
+        result = await self.repository.get_all(article_id, tg_user_id, page_params)
+        if not result:
+            return NotFoundResponse()
+        return result
 
     async def get_one(self, id: int):
         return await self.repository.get_one(id)
