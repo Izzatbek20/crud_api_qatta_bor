@@ -1,4 +1,4 @@
-from fastapi import Depends, APIRouter, UploadFile, File, Form
+from fastapi import Depends, APIRouter, UploadFile, File, Form, BackgroundTasks
 from typing import Union
 
 from app.auth.services import get_current_user
@@ -32,12 +32,13 @@ async def router_get_one(
 
 @router.post("/category/create", summary="Yangi categoriya yaratish")
 async def reouter_create_category(
+    task: BackgroundTasks,
     parent_id: int = Form(description="Parent id",repr=False),
     title: str = Form(description="Title",repr=False),
     description: str = Form(description="Description",repr=False),
     photo: Union[UploadFile, str, None] = File(None, description="photo"),
     current_user: Users = Depends(get_current_user),
-    _service: CategoryService = Depends(category_service_dp)
+    _service: CategoryService = Depends(category_service_dp),
 ):
     payload = {
         'parent_id': parent_id,
