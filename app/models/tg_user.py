@@ -14,7 +14,7 @@ class TgUsers(Base):
     latitude: Mapped[float] = mapped_column(Float)
     longitude: Mapped[float] = mapped_column(Float)
     created_at: Mapped[DateTime] = mapped_column(DateTime, default=datetime.now())
-    updated_at: Mapped[DateTime] = mapped_column(DateTime)
+    updated_at: Mapped[DateTime] = mapped_column(DateTime, default=datetime.now())
 
     # Relations
     #chat = relationship("Chat", back_populates="tg_users")
