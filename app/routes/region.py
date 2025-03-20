@@ -10,7 +10,7 @@ from app.utils.pagination import Page, PageParams, get_page_params
 router = APIRouter()
 
 @router.get("/region",summary="Barcha regionlarni olish")
-async def router_region_get_all(
+async def router_get_all(
     status: RegionStatus,
     parent_id = 0,
     current_user: Users = Depends(get_current_user),
@@ -20,7 +20,7 @@ async def router_region_get_all(
     return await _service.get_all(status, parent_id, page_params)
 
 @router.get("/region/{id}",summary="Region haqida to'liq ma'lumot olish")
-async def router_region_get_one(
+async def router_get_one(
     id: int,
     current_user: Users = Depends(get_current_user),
     _service: RegionService = Depends(region_service_dp)
@@ -28,7 +28,7 @@ async def router_region_get_one(
     return await _service.get_one(id)
 
 @router.post("/region/create",summary="Yangi region yaratish")
-async def router_article_create(
+async def router_create(
     payload: RegionCreatePayload,
     current_user: Users = Depends(get_current_user),
     _service: RegionService = Depends(region_service_dp)
@@ -36,7 +36,7 @@ async def router_article_create(
     return await _service.create(payload)
 
 @router.put("/region/{id}/update",summary="Region ma'lumotlarini yangilash")
-async def router_article_update(
+async def router_update(
     id: int,
     payload: RegionUpdatePayload,
     current_user: Users = Depends(get_current_user),
@@ -45,7 +45,7 @@ async def router_article_update(
     return await _service.get_all(id, payload)
 
 @router.delete("/region/{id}/delete",summary="Regionni o'chirish")
-async def router_article_delete(
+async def router_delete(
     id: int,
     current_service: Users = Depends(get_current_user),
     _service: RegionService = Depends(region_service_dp)
