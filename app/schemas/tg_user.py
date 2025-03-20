@@ -7,19 +7,19 @@ class TgUsersResponse(BaseModel):
     user_id: int
     chat_id: int
     region_id: int
-    fullname: int
-    username: int
+    fullname: str
+    username: str
     latitude: float
     longitude: float
     region: RegionTitleResponse
     created_at: datetime
     updated_at: datetime
 
-class TgUserPayload(TgUsersResponse):
+class TgUserPayload(BaseModel):
     user_id: int
     chat_id: int
     region_id: int
-    fullname: int
-    username: int
+    fullname: str
+    username: str
     latitude: float
     longitude: float
